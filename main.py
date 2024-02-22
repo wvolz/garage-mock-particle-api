@@ -11,13 +11,13 @@ Mock particle API for testing garage doorstate/move
 
 Sample API call: https://api.particle.io/v1/devices/deadbeef123/doorstate?access_token=123
 """
+
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 
-"""
-"2015-07-17T22:28:40.907Z"
-"""
+
 @app.get("/v1/devices/{device_id}/doorstate")
 def read_item(device_id: int, access_token: Union[str, None] = None):
     return {
@@ -27,9 +27,12 @@ def read_item(device_id: int, access_token: Union[str, None] = None):
             "name": "testDeviceName",
             "deviceID": device_id,
             "connected": True,
-            "last_handshake_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-        }
+            "last_handshake_at": datetime.now(timezone.utc).strftime(
+                "%Y-%m-%dT%H:%M:%SZ"
+            ),
+        },
     }
+
 
 @app.post("/v1/devices/{device_id}/door1move")
 def read_item(device_id: int, access_token: Union[str, None] = None):
@@ -37,5 +40,5 @@ def read_item(device_id: int, access_token: Union[str, None] = None):
         "id": device_id,
         "name": "testDeviceName",
         "connected": True,
-        "return_value": 1
+        "return_value": 1,
     }
